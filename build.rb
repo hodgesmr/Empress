@@ -45,6 +45,6 @@ jsonString = posts.to_json
 File.open('posts.json', 'w') { |f| f.write(jsonString) }
 
 currentTime = Time.new
-messageString = "Empress built at " + currentTime.inspect
+messageString = "Empress built - " + currentTime.inspect
 `git add . && git commit -m "#{messageString}"`
 puts messageString
