@@ -41,4 +41,5 @@ end
 
 posts = posts.sort_by { |post| DateTime.parse(post.instance_variable_get(:@publishDate)) }
 jsonString = posts.to_json
-puts jsonString
+
+File.open('posts.json', 'w') { |f| f.write(jsonString) }
