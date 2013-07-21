@@ -33,7 +33,7 @@ end
 
 posts = Array.new
 
-Dir.foreach('../posts/') do |item|
+Dir.foreach('./posts/') do |item|
   next if item == '.' or item == '..'
   publishDate = `git log --format='format:%ci' --diff-filter=A ../posts/"#{item}"`
   posts.push(Post.new(item, publishDate))
