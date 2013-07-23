@@ -10,6 +10,24 @@ $.getJSON('externalLinks.json', function(data) {
 })
 .fail(function() { console.error("There was an error loading externalLinks.json"); });
 
+// The above successfully updates the externalLinksJSON variable
+// but Ember has already rendered the page with the original JSON data
+// Below will do everything synchronously, but that's gross...
+
+/*
+$.ajax({
+	url:'externalLinks.json',
+	async: false,
+	dataType: 'json',
+	success: function(data) {
+		externalLinksJSON = data;
+	},
+	error: function() {
+		console.log.error("Error loading externalLinks.json")
+	}
+});
+*/
+
 App.Store = DS.Store.extend({
 	revision: 12,
 	adapter: 'DS.FixtureAdapter'
