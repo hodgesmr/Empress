@@ -15,10 +15,16 @@
         <a class="brand" href="#">Empress</a>
         <ul class="nav">
           <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
+          <li>{{#linkTo 'about'}}About{{/linkTo}}</li>
         </ul>
       </div>
     </div>
+
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" id="about">
+    About
   </script>
 
   <script src="js/libs/jquery-1.9.1.js"></script>
