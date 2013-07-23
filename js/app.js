@@ -1,21 +1,17 @@
 App = Ember.Application.create();
 
-
 var externalLinksJSON = [{
-	id: 1,
-	title: "test",
-	url: "http://google.com"
-}, {
-	id: 2,
-	title: "test2",
-	url: "http://yahoo.com"
+	id: 0
 }];
 
-/*
-$.getJSON('../externalLinks.json', function(data) {
+$.getJSON('externalLinks.json', function(data) {
 	externalLinksJSON = data;
-});
-*/
+	console.log(externalLinksJSON);
+})
+.done(function() { console.log("second success"); })
+.fail(function() { console.log("error"); })
+.always(function() { console.log("complete"); });
+
 
 App.Store = DS.Store.extend({
 	revision: 12,
