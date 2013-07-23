@@ -8,10 +8,7 @@ $.getJSON('externalLinks.json', function(data) {
 	externalLinksJSON = data;
 	console.log(externalLinksJSON);
 })
-.done(function() { console.log("second success"); })
-.fail(function() { console.log("error"); })
-.always(function() { console.log("complete"); });
-
+.fail(function() { console.error("There was an error loading externalLinks.json"); });
 
 App.Store = DS.Store.extend({
 	revision: 12,
