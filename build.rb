@@ -33,18 +33,17 @@ end
 
 posts = Array.new
 
-Dir.foreach('./posts/') do |item|
+Dir.foreach('./content/posts/') do |item|
   next if item == '.' or item == '..'
-  publishDate = `git log --format='format:%ci' --diff-filter=A ./posts/"#{item}"`
+  publishDate = `git log --format='format:%ci' --diff-filter=A ./content/posts/"#{item}"`
   posts.push(Post.new(item, publishDate))
 end
 
 posts = posts.sort_by { |post| DateTime.parse(post.instance_variable_get(:@publishDate)) }
 jsonString = posts.to_json
 
-File.open('posts.json', 'w') { |f| f.write(jsonString) }
+File.open('./content/posts.json', 'w') { |f| f.write(jsonString) }
 
 currentTime = Time.new
 messageString = "Empress built - " + currentTime.inspect
-`git add . && git commit -m "#{messageString}"`
-puts messageString
+puts = `git commit -m "#{messageString}"`
