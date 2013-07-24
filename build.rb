@@ -46,4 +46,4 @@ File.open('./content/posts.json', 'w') { |f| f.write(jsonString) }
 
 currentTime = Time.new
 messageString = "Empress built - " + currentTime.inspect
-puts = `git commit -m "#{messageString}"`
+puts `git commit -m "#{messageString}"`
