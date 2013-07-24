@@ -13,6 +13,11 @@ $.getJSON('./content/externalLinks.json', function(data) {
 })
 .fail(function() { console.error("Error loading externalLinks.json"); });
 
+$.getJSON('./content/posts.json', function(data) {
+	App.set("Posts",data);
+})
+.fail(function() { console.error("Error loading posts.json"); });
+
 App.Router.map(function() {
 	this.resource('home');
 	this.resource('about');
