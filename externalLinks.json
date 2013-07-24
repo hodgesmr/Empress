@@ -1,10 +1,13 @@
 [{
-    "title": "Google",
-    "url": "http://google.com"
+    "title": "Twitter",
+    "url": "http://twitter.com/hodgesmr"
 }, {
-    "title": "Yahoo",
-    "url": "http://yahoo.com"
+    "title": "GitHub",
+    "url": "https://github.com/hodgesmr"
 }, {
-	"title": "Bing",
-	"url": "http://bing.com"
+	"title": "LinkedIn",
+	"url": "http://www.linkedin.com/in/hodgesmr"
+}, {
+	"title": "Email",
+	"url": "http://www.google.com/recaptcha/mailhide/d?k=01-UDOt5f44mWngLnJnGtOZA==&c=es0QOichJq5wd2IgnnRYcenxrP46LrUDQRYWxbw6U7Q="
 }]
