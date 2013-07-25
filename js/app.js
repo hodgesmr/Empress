@@ -44,7 +44,6 @@ function loadContentFile(filename, successBlock) {
 
 // Application routes
 App.Router.map(function() {
-	this.resource('home');
 	this.resource('about');
 });
 
