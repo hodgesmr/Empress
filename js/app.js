@@ -1,25 +1,23 @@
 App = Ember.Application.create();
 
+// External Links
 App.ExternalLinks = [];
 App.ExternalLink = Ember.Object.create();
-
-App.Posts = [];
-App.Post = Ember.Object.create();
-
-App.PostBody = Ember.Object.create();
-
-App.AboutBody = "";
-
 $.getJSON('./content/externalLinks.json', function(data) {
 	App.set("ExternalLinks", data);
 })
 .fail(function() { console.error("Error loading externalLinks.json"); });
 
+// List of posts
+App.Posts = [];
+App.Post = Ember.Object.create();
 $.getJSON('./content/posts.json', function(data) {
 	App.set("Posts", data);
 })
 .fail(function() { console.error("Error loading posts.json"); });
 
+// About
+App.AboutBody = "";
 $.ajax({
 	url: './content/about.md',
 	dataType: 'text',
@@ -31,6 +29,10 @@ $.ajax({
 	}
 });
 
+// Post body
+App.PostBody = "";
+
+// Application routes
 App.Router.map(function() {
 	this.resource('home');
 	this.resource('about');
