@@ -25,8 +25,8 @@ require 'date'
 require 'active_support/all'
 
 class Post
-  def initialize(fileName, publishDate)
-    @fileName = fileName 
+  def initialize(filename, publishDate)
+    @filename = filename 
     @publishDate = publishDate
   end
 end

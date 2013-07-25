@@ -13,6 +13,7 @@ App.Posts = [];
 App.Post = Ember.Object.create();
 $.getJSON('./content/posts.json', function(data) {
 	App.set("Posts", data);
+	console.log(App.Posts);
 })
 .fail(function() { console.error("Error loading posts.json"); });
 

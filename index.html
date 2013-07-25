@@ -42,7 +42,11 @@
   </script>
 
   <script type="text/x-handlebars" id="index">
-    Home page
+    <ul id="postsList">
+      {{#each App.Posts}}
+      <li>{{filename}}</li>
+      {{/each}}
+    </ul>
   </script>
 
   <script type="text/x-handlebars" id="about">
