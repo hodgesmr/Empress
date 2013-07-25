@@ -37,3 +37,8 @@ App.Router.map(function() {
 	this.resource('home');
 	this.resource('about');
 });
+
+// Helpers
+Ember.Handlebars.registerBoundHelper('markdown', function(input) {
+	return new Handlebars.SafeString(new Showdown.converter().makeHtml(input));
+});
