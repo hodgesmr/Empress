@@ -18,19 +18,29 @@ $.getJSON('./content/posts.json', function(data) {
 
 // About
 App.AboutBody = "";
-$.ajax({
-	url: './content/about.md',
-	dataType: 'text',
-	success: function(data) {
-		App.set("AboutBody", data);
-	},
-	error: function() {
-		console.error("Error loading about.md");
-	}
+loadContentFile("about.md", function(data) {
+	App.set("AboutBody", data);
 });
 
 // Post body
 App.PostBody = "";
+function loadPostBody(filename) {
+	loadContentFile(filename, function(data) {
+		App.set("PostBody", data);
+	});
+};
+
+// Asynchronously load markdown files
+function loadContentFile(filename, successBlock) {
+	$.ajax({
+		url: './content/' + filename,
+		dataType: 'text',
+		success: successBlock,
+		error: function(){
+			console.error("Error loading " + filename);
+		}
+	});
+};
 
 // Application routes
 App.Router.map(function() {
