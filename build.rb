@@ -40,6 +40,7 @@ Dir.foreach('./content/posts/') do |item|
 end
 
 posts = posts.sort_by { |post| DateTime.parse(post.instance_variable_get(:@publishDate)) }
+posts.reverse!
 jsonString = posts.to_json
 
 File.open('./content/posts.json', 'w') { |f| f.write(jsonString) }
