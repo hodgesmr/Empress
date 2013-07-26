@@ -44,13 +44,17 @@
   <script type="text/x-handlebars" id="index">
     <ul id="postsList">
       {{#each App.Posts}}
-      <li>{{filename}}</li>
+      <li>{{#linkTo 'post' filename}}{{filename}}{{/linkTo}}</li>
       {{/each}}
     </ul>
   </script>
 
   <script type="text/x-handlebars" id="about">
     {{markdown App.AboutBody}}
+  </script>
+
+  <script type="text/x-handlebars" id="post">
+    {{this.publishDate}}
   </script>
 
   <script src="js/libs/jquery-1.9.1.js"></script>

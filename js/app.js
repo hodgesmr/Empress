@@ -13,7 +13,6 @@ App.Posts = [];
 App.Post = Ember.Object.create();
 $.getJSON('./content/posts.json', function(data) {
 	App.set("Posts", data);
-	console.log(App.Posts);
 })
 .fail(function() { console.error("Error loading posts.json"); });
 
@@ -46,6 +45,18 @@ function loadContentFile(filename, successBlock) {
 // Application routes
 App.Router.map(function() {
 	this.resource('about');
+	this.resource('post', {
+		path: ':post_filename'
+	});
+});
+
+App.PostRoute = Ember.Route.extend({
+	model: function(params) {
+		return params;
+	},
+	serialize: function(model) {
+		return { post_filename: model.filename };
+	}
 });
 
 // Helpers
