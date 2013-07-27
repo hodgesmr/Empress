@@ -52,10 +52,7 @@ App.Router.map(function() {
 
 App.PostRoute = Ember.Route.extend({
 	model: function(params) {
-		return params;
-	},
-	serialize: function(model) {
-		return { post_filename: model.filename };
+		return params.post_filename;
 	}
 });
 
