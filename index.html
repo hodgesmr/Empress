@@ -44,7 +44,7 @@
   <script type="text/x-handlebars" id="index">
     <ul id="postsList">
       {{#each App.Posts}}
-      <li>{{#linkTo 'post' filename}}{{filename}}{{/linkTo}}</li>
+      <li>{{#linkTo 'post' this}}{{title}}{{/linkTo}}</li>
       {{/each}}
     </ul>
   </script>
@@ -54,7 +54,7 @@
   </script>
 
   <script type="text/x-handlebars" id="post">
-    {{model}}
+    {{model.title}}
   </script>
 
   <script src="js/libs/jquery-1.9.1.js"></script>

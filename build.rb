@@ -38,6 +38,8 @@ posts = Array.new
 Dir.foreach('./content/posts/') do |item|
   next if item == '.' or item == '..'
   title = File.open("./content/posts/#{item}", &:readline)
+  title = title.gsub("\n", "")
+  title[0] = ''
   slug = item[0...-3]
   publishDate = `git log --format='format:%ci' --diff-filter=A ./content/posts/"#{item}"`
   posts.push(Post.new(title, slug, item, publishDate))

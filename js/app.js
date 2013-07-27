@@ -10,7 +10,6 @@ $.getJSON('./content/externalLinks.json', function(data) {
 
 // List of posts
 App.Posts = [];
-App.Post = Ember.Object.create();
 $.getJSON('./content/posts.json', function(data) {
 	App.set("Posts", data);
 })
@@ -21,6 +20,29 @@ App.AboutBody = "";
 loadContentFile("about.md", function(data) {
 	App.set("AboutBody", data);
 });
+
+// Current post
+CurrentPost = Ember.Object.extend({
+	title: null,
+	slug: null,
+	filename: null,
+	publishDate: null
+});
+
+function findPostBySlug(slug) {
+	for(var i=0; i<App.Posts.length; i++) {
+		if(App.Posts[i].slug == slug) {
+			var currentPost = CurrentPost.create({
+				title: App.Posts[i].title,
+				slug: App.Posts[i].slug,
+				filename: App.Posts[i].filename,
+				publishDate: App.Posts[i].publishDate
+			});
+			return currentPost;
+		}
+	}
+	return null;
+};
 
 // Post body
 App.PostBody = "";
@@ -46,13 +68,18 @@ function loadContentFile(filename, successBlock) {
 App.Router.map(function() {
 	this.resource('about');
 	this.resource('post', {
-		path: ':post_filename'
+		path: ':post_slug'
 	});
 });
 
 App.PostRoute = Ember.Route.extend({
 	model: function(params) {
-		return params.post_filename;
+		return params;
+	},
+	serialize: function(model) {
+		return {
+			post_slug: model.slug
+		};
 	}
 });
 
