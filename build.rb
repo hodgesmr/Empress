@@ -25,7 +25,9 @@ require 'date'
 require 'active_support/all'
 
 class Post
-  def initialize(filename, publishDate)
+  def initialize(title, slug, filename, publishDate)
+  	@title = title
+  	@slug = slug
     @filename = filename 
     @publishDate = publishDate
   end
@@ -35,8 +37,10 @@ posts = Array.new
 
 Dir.foreach('./content/posts/') do |item|
   next if item == '.' or item == '..'
+  title = File.open("./content/posts/#{item}", &:readline)
+  slug = item[0...-3]
   publishDate = `git log --format='format:%ci' --diff-filter=A ./content/posts/"#{item}"`
-  posts.push(Post.new(item, publishDate))
+  posts.push(Post.new(title, slug, item, publishDate))
 end
 
 posts = posts.sort_by { |post| DateTime.parse(post.instance_variable_get(:@publishDate)) }
