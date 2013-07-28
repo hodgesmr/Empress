@@ -25,12 +25,6 @@ function loadPostsList() {
 };
 loadPostsList();
 
-// About
-App.AboutBody = "";
-loadContentFile("about.md", function(data) {
-	App.set("AboutBody", data);
-});
-
 // Current post
 CurrentPost = Ember.Object.extend({
 	title: null,
@@ -42,7 +36,6 @@ CurrentPost = Ember.Object.extend({
 function findPostBySlug(slug) {
 	for(var i=0; i<App.Posts.length; i++) {
 		if(App.Posts[i].slug == slug) {
-			//loadPostBody('posts/'+App.Posts[i].filename);
 			var currentPost = CurrentPost.create({
 				title: App.Posts[i].title,
 				slug: App.Posts[i].slug,
@@ -54,14 +47,6 @@ function findPostBySlug(slug) {
 	}
 	return CurrentPost.create({
 		title: "Post Not Found"
-	});
-};
-
-// Post body
-App.PostBody = "";
-function loadPostBody(filename) {
-	loadContentFile(filename, function(data) {
-		App.set("PostBody", data);
 	});
 };
 
@@ -85,6 +70,26 @@ App.Router.map(function() {
 	});
 });
 
+// About Controller
+App.AboutController = Ember.ObjectController.extend({
+	aboutBody: ""
+});
+
+// About Route
+App.AboutRoute = Ember.Route.extend({
+	setupController: function(controller, model) {
+		loadContentFile("about.md", function(data) {
+			controller.set("aboutBody", data);
+		});
+	}
+});
+
+// Post Controller
+App.PostController = Ember.ObjectController.extend({
+	postBody: ""
+});
+
+// Post Route
 App.PostRoute = Ember.Route.extend({
 	model: function(params) {
 		return findPostBySlug(params.post_slug);
@@ -95,7 +100,9 @@ App.PostRoute = Ember.Route.extend({
 		};
 	},
 	setupController: function(controller, model) {
-		loadPostBody('posts/'+model.filename);
+		loadContentFile('posts/'+model.filename, function(data) {
+			controller.set("postBody", data);
+		});
 	}
 });
 
