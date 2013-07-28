@@ -29,9 +29,11 @@ git clone https://github.com/hodgesmr/Empress.git YOURNAME.github.io
 And edit your Git config file to point to your origin URL:
 
 ```sh
-cd Empress
-git remote set origin https://github.com/YOURNAME/YOURNAME.github.io.git
+cd YOURNAME.github.io
+git remote rm origin
+git remote add origin https://github.com/YOURNAME/YOURNAME.github.io.git
 ```
+
 Optionally, you can reference the original Empress project as an upstream source:
 
 ```sh
