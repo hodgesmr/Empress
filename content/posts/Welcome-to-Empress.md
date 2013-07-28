@@ -57,11 +57,11 @@ The Empress build process works by referencing files that have a commit in your 
 
 A post's slug is determined by its filename. All post files should be named accordingly: `My-Blog-Post.md`. This tells Empress not only the resource location for your post, but also that the post slug will be `My-Blog-Post`.
 
-The post's title is defined by the first line in its Markdown file. This should be denoted using Markdown's H1 atx syntax. So, the first line of your post file should be `#My Blog Post`.
+A post's title is defined by the first line in its Markdown file. This should be denoted using Markdown's H1 atx syntax. So, the first line of your post file should be `#My Blog Post`.
 
 ##Other files
 
-By default, Empress references two other files when rendering its template: `/content/about.md` and `/externalLinks.json`. Update these as necessary.
+By default, Empress references two other files when rendering its template: `/content/about.md` and `/content/externalLinks.json`. Update these as necessary.
 
 ## A Matt Hodges project
 

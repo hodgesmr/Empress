@@ -61,7 +61,7 @@ The post's title is defined by the first line in its Markdown file. This should 
 
 ##Other files
 
-By default, Empress references two other files when rendering its template: `/content/about.md` and `/externalLinks.json`. Update these as necessary.
+By default, Empress references two other files when rendering its template: `/content/about.md` and `/content/externalLinks.json`. Update these as necessary.
 
 ## A Matt Hodges project
 
