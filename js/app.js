@@ -40,9 +40,9 @@ CurrentPost = Ember.Object.extend({
 });
 
 function findPostBySlug(slug) {
-	loadPostsList();
 	for(var i=0; i<App.Posts.length; i++) {
 		if(App.Posts[i].slug == slug) {
+			//loadPostBody('posts/'+App.Posts[i].filename);
 			var currentPost = CurrentPost.create({
 				title: App.Posts[i].title,
 				slug: App.Posts[i].slug,
@@ -93,6 +93,9 @@ App.PostRoute = Ember.Route.extend({
 		return {
 			post_slug: model.slug
 		};
+	},
+	setupController: function(controller, model) {
+		loadPostBody('posts/'+model.filename);
 	}
 });
 
