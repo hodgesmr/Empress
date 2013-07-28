@@ -35,6 +35,7 @@ body {
   position: relative;
   display: block;
   font-size: 18px;
+  line-height: 200%;
 }
 
 .post-list > li > a {
@@ -42,9 +43,12 @@ body {
 }
 
 span.date {
-  padding-top: 2px;
   float: right;
   text-transform: uppercase;
   font-size: 12px;
   color: #999;
+}
+
+img {
+	max-width: 100%;
 }
