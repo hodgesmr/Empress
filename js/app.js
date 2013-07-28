@@ -108,9 +108,11 @@ App.PostRoute = Ember.Route.extend({
 		controller.set("slug", model.slug);
 		controller.set("filename", model.filename);
 		controller.set("publishDate", model.publishDate);
-		loadContentFile('posts/'+model.filename, function(data) {
-			controller.set("postBody", data);
-		});
+		if(model.filename != null && model.filename != "") {
+			loadContentFile('posts/'+model.filename, function(data) {
+				controller.set("postBody", data);
+			});
+		}
 	}
 });
 
@@ -121,5 +123,7 @@ Ember.Handlebars.registerBoundHelper('markdown', function(input) {
 
 // Date helper
 Ember.Handlebars.registerBoundHelper('date', function(date) {
-  return moment(date).format("YYYY-MM-DD");
+	if(date != null && date != "") {
+  		return moment(date).format("YYYY-MM-DD");
+  	}
 });
