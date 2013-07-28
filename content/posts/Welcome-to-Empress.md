@@ -1,6 +1,6 @@
 #Welcome to Empress!
 
-Empress is a bootstrapped blogging template the leverages [EmberJS](http://emberjs.com/) and GitHub. Empress lets you author your blog posts in [Markdown](http://daringfireball.net/projects/markdown/syntax), and uses git (and some Ruby hackery) to generate you blog on the fly.
+Empress is a bootstrapped blogging template that leverages [EmberJS](http://emberjs.com/) and GitHub. Empress lets you author your blog posts in [Markdown](http://daringfireball.net/projects/markdown/syntax), and uses git (and some Ruby hackery) to generate you blog on the fly.
 
 ##Quick Start
 
