@@ -45,7 +45,7 @@ Finally, push:
 git push -u origin master
 ```
 
-Your Embress blog should now be live at `http://YOURNAME.github.io`
+Your Empress blog should now be live at `http://YOURNAME.github.io`
 
 At this point, you will be able to push/pull from your GitHub repository. If you chose to reference the Empress project as an upstream, you can bring down project changes:
 ```sh
