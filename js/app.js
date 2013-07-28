@@ -27,10 +27,10 @@ loadPostsList();
 
 // Current post
 CurrentPost = Ember.Object.extend({
-	title: null,
-	slug: null,
-	filename: null,
-	publishDate: null
+	title: "",
+	slug: "",
+	filename: "",
+	publishDate: ""
 });
 
 function findPostBySlug(slug) {
