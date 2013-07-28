@@ -1,4 +1,58 @@
-/* Put your CSS here */
-html, body {
-    margin: 20px;
+body {
+  padding-top: 50px;
+}
+
+.custom-template {
+  padding: 40px 15px;
+}
+
+.main-content {
+  padding-bottom: 50px;
+}
+
+.contact-list {
+	padding-left: 0;
+	text-align: center;
+}
+
+.contact-list > ul {
+	padding-left: 0;
+}
+
+.contact-list > ul > li {
+  position: relative;
+  display: block;
+}
+
+.contact-list > ul > li > a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+
+.contact-list > ul > li > a:hover {
+  text-decoration: none;
+}
+
+.post-list  > li {
+  padding-left: 0;
+  position: relative;
+  display: block;
+  font-size: 18px;
+}
+
+.post-list > li > a {
+	color: #307EA9;
+}
+
+.post-list > li > a:hover {
+  text-decoration: none;
+}
+
+span.date {
+  padding-top: 2px;
+  float: right;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #999;
 }

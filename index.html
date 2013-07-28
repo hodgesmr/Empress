@@ -1,70 +1,81 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>Empress</title>
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <title>Empress</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
 
-  <script type="text/x-handlebars">
-    <div class="navbar">
-      <div class="navbar-inner">
-        <a class="brand" href="#">Empress</a>
-        <ul class="nav">
-          <li>{{#linkTo 'index'}}Home{{/linkTo}}</li>
-          <li>{{#linkTo 'about'}}About{{/linkTo}}</li>
+  <body>
+
+    <script type="text/x-handlebars">
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Empress</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li>{{#linkTo 'index'}}Home{{/linkTo}}</li>
+              <li>{{#linkTo 'about'}}About{{/linkTo}}</li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+
+      <div class="container">
+
+      <div class="custom-template">
+        <div class="row">
+          <div class="col-lg-8">
+            {{outlet}}
+          </div>
+          <div class="col-lg-4 contact-list">
+            <h4>Contact</h4>
+            <ul>
+              {{#each App.ExternalLinks}}
+              <li><a target="_blank" {{bindAttr href="url"}}>{{title}}</a></li>
+              {{/each}}
+            </ul>
+         </div>
+        </div>
+      </div>
+
+    </div><!-- /.container -->
+    </script>
+
+    <script type="text/x-handlebars" id="index">
+      <div class="main-content">
+        <ul class="post-list">
+          {{#each App.Posts}}
+          <li><span class="date">{{date publishDate}}</span>{{#linkTo 'post' this}}{{title}}{{/linkTo}}</li>
+          {{/each}}
         </ul>
       </div>
-    </div>
+    </script>
 
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span2">
-          <table class="table">
-            <thead>
-              <tr><th>Contact</th></tr>
-            </thead>
-            {{#each App.ExternalLinks}}
-            <tr><td>
-              <a target="_blank" {{bindAttr href="url"}}>{{title}}</a>
-            </td></tr>
-            {{/each}}
-          </table>
-        </div>
-        <div class="span7">
-          {{outlet}}
-        </div>
-      </div>
-    </div>
-  </script>
+    <script type="text/x-handlebars" id="about">
+      {{markdown aboutBody}}
+    </script>
 
-  <script type="text/x-handlebars" id="index">
-    <ul id="postsList">
-      {{#each App.Posts}}
-      <li>{{#linkTo 'post' this}}{{title}}{{/linkTo}}</li>
-      {{/each}}
-    </ul>
-  </script>
+    <script type="text/x-handlebars" id="post">
+      <span class="date">{{date publishDate}}</span>
+      <br />
+      {{markdown postBody}}
+    </script>
 
-  <script type="text/x-handlebars" id="about">
-    {{markdown aboutBody}}
-  </script>
+    <script src="js/libs/jquery-1.9.1.js"></script>
+    <script src="js/libs/bootstrap.js"></script>
+    <script src="js/libs/handlebars-1.0.0-rc.4.js"></script>
+    <script src="js/libs/ember-1.0.0-rc.6.js"></script>
+    <script src="js/libs/showdown.js"></script>
+    <script src="js/libs/moment.js"></script>
+    <script src="js/app.js"></script>
 
-  <script type="text/x-handlebars" id="post">
-    {{date publishDate}}
-    <br />
-    {{markdown postBody}}
-  </script>
-
-  <script src="js/libs/jquery-1.9.1.js"></script>
-  <script src="js/libs/handlebars-1.0.0-rc.4.js"></script>
-  <script src="js/libs/ember-1.0.0-rc.6.js"></script>
-  <script src="js/libs/showdown.js"></script>
-  <script src="js/libs/moment.js"></script>
-  <script src="js/app.js"></script>
-
-</body>
+  </body>
 </html>

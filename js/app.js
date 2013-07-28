@@ -78,6 +78,7 @@ App.AboutController = Ember.ObjectController.extend({
 // About Route
 App.AboutRoute = Ember.Route.extend({
 	setupController: function(controller, model) {
+		$('.nav-collapse').collapse('hide');
 		loadContentFile("about.md", function(data) {
 			controller.set("aboutBody", data);
 		});
@@ -125,6 +126,6 @@ Ember.Handlebars.registerBoundHelper('markdown', function(input) {
 // Date helper
 Ember.Handlebars.registerBoundHelper('date', function(date) {
 	if(date != null && date != "") {
-  		return moment(date).format("YYYY-MM-DD");
+  		return moment(date).format('MMMM Do YYYY');
   	}
 });
