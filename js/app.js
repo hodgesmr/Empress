@@ -41,7 +41,9 @@ function findPostBySlug(slug) {
 			return currentPost;
 		}
 	}
-	return null;
+	return CurrentPost.create({
+		title: "Post Not Found"
+	});
 };
 
 // Post body
@@ -74,7 +76,7 @@ App.Router.map(function() {
 
 App.PostRoute = Ember.Route.extend({
 	model: function(params) {
-		return params;
+		return findPostBySlug(params.post_slug);
 	},
 	serialize: function(model) {
 		return {
