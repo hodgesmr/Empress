@@ -10,10 +10,20 @@ $.getJSON('./content/externalLinks.json', function(data) {
 
 // List of posts
 App.Posts = [];
-$.getJSON('./content/posts.json', function(data) {
-	App.set("Posts", data);
-})
-.fail(function() { console.error("Error loading posts.json"); });
+function loadPostsList() {
+	$.ajax({
+		url: './content/posts.json',
+		dataType: 'json',
+		async: false,
+		success: function(data) {
+			App.set("Posts", data);
+		},
+		error: function(){
+			console.error("Error loading posts.json");
+		}
+	});
+};
+loadPostsList();
 
 // About
 App.AboutBody = "";
@@ -30,6 +40,7 @@ CurrentPost = Ember.Object.extend({
 });
 
 function findPostBySlug(slug) {
+	loadPostsList();
 	for(var i=0; i<App.Posts.length; i++) {
 		if(App.Posts[i].slug == slug) {
 			var currentPost = CurrentPost.create({
