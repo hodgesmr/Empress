@@ -104,6 +104,7 @@ App.PostRoute = Ember.Route.extend({
 		};
 	},
 	setupController: function(controller, model) {
+		controller.set("postBody", ""); // do this to get rid of text flash while loading
 		controller.set("title", model.title);
 		controller.set("slug", model.slug);
 		controller.set("filename", model.filename);
