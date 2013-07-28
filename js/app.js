@@ -1,5 +1,7 @@
 App = Ember.Application.create();
 
+App.Title = "Empress";
+
 // External Links
 App.ExternalLinks = [];
 App.ExternalLink = Ember.Object.create();
@@ -70,6 +72,13 @@ App.Router.map(function() {
 	});
 });
 
+App.IndexRoute = Ember.Route.extend({
+	setupController: function(controller, model) {
+		$('.nav-collapse').collapse('hide');
+		document.title = App.Title;
+	}
+});
+
 // About Controller
 App.AboutController = Ember.ObjectController.extend({
 	aboutBody: ""
@@ -82,6 +91,7 @@ App.AboutRoute = Ember.Route.extend({
 		loadContentFile("about.md", function(data) {
 			controller.set("aboutBody", data);
 		});
+		document.title  = "About";
 	}
 });
 
@@ -114,6 +124,9 @@ App.PostRoute = Ember.Route.extend({
 			loadContentFile('posts/'+model.filename, function(data) {
 				controller.set("postBody", data);
 			});
+		}
+		if(model.title != null && model.title != "") {
+			document.title = model.title;
 		}
 	}
 });
