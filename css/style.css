@@ -30,10 +30,6 @@ body {
   padding: 10px 15px;
 }
 
-.contact-list > ul > li > a:hover {
-  text-decoration: none;
-}
-
 .post-list  > li {
   padding-left: 0;
   position: relative;
@@ -43,10 +39,6 @@ body {
 
 .post-list > li > a {
 	color: #307EA9;
-}
-
-.post-list > li > a:hover {
-  text-decoration: none;
 }
 
 span.date {
