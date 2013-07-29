@@ -9,7 +9,7 @@ Empress is a bootstrapped blogging template that leverages [EmberJS](http://embe
 It is easy to launch a local instance of Empress:
 
 ```sh
-git clone https://github.com/hodgesmr/Empress.git ~/Empress`
+git clone https://github.com/hodgesmr/Empress.git ~/Empress
 ~/Empress/launch.py
 ```
 
