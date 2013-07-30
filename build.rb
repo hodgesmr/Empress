@@ -75,9 +75,3 @@ class BlogBuilder
 end
 
 BlogBuilder.build!
-
-
-
-
-
-
