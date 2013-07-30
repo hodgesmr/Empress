@@ -25,33 +25,59 @@ require 'date'
 require 'active_support/all'
 
 class Post
-  def initialize(title, slug, filename, publishDate)
+  def initialize(title, slug, filename, publish_date)
   	@title = title
   	@slug = slug
     @filename = filename 
-    @publishDate = publishDate
+    @publish_date = publish_date
   end
 end
 
-posts = Array.new
+class BlogBuilder
+  class << self
 
-Dir.foreach('./content/posts/') do |item|
-  next if item == '.' or item == '..'
-  title = File.open("./content/posts/#{item}", &:readline)
-  title = title.gsub("\n", "")
-  title[0] = ''
-  slug = item[0...-3]
-  publishDate = `git log --format='format:%ci' --diff-filter=A ./content/posts/"#{item}"`
-  posts.push(Post.new(title, slug, item, publishDate))
+    attr_reader :posts, :json_string
+
+    def set_post_metadata
+      @posts = []
+      Dir.foreach('./content/posts/') do |item|
+        next if item == '.' or item == '..'
+        title = File.open("./content/posts/#{item}", &:readline)
+        title = title.gsub("\n", "")
+        title[0] = ''
+        slug = item[0...-3]
+        publish_date = `git log --format='format:%ci' --diff-filter=A ./content/posts/"#{item}"`
+        @posts.push(Post.new(title, slug, item, publish_date))
+      end
+    end
+
+    def jsonify_posts
+      posts = @posts.sort_by { |post| DateTime.parse(post.instance_variable_get(:@publish_date)) }
+      @json_string = posts.reverse.to_json
+    end
+
+    def create_posts_from_json
+      File.open('./content/posts.json', 'w') { |f| f.write(json_string) }
+    end
+
+    def commit
+      `git add .`
+      puts `git commit -m "Empress built - #{Time.now}"`
+    end
+
+    def build!
+      set_post_metadata
+      jsonify_posts
+      create_posts_from_json
+      commit
+    end
+  end
 end
 
-posts = posts.sort_by { |post| DateTime.parse(post.instance_variable_get(:@publishDate)) }
-posts.reverse!
-jsonString = posts.to_json
+BlogBuilder.build!
 
-File.open('./content/posts.json', 'w') { |f| f.write(jsonString) }
 
-currentTime = Time.new
-messageString = "Empress built - " + currentTime.inspect
-`git add .`
-puts `git commit -m "#{messageString}"`
+
+
+
+
