@@ -20,19 +20,23 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+import sys
 import webbrowser
 import SimpleHTTPServer
-import SocketServer
-import threading
+from SocketServer import TCPServer
+from threading import Thread
 
-PORT = 8000
+if sys.argv[1:]:
+    PORT = int(sys.argv[1])
+else:
+    PORT = 8000
 
 Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
 
-httpd = SocketServer.TCPServer(("", PORT), Handler)
+httpd = TCPServer(("", PORT), Handler)
 
 print "Starting HTTP server on port", PORT
-threading.Thread(target=httpd.serve_forever).start()
+Thread(target=httpd.serve_forever).start()
 
 print "Launching local instance of Empress"
-webbrowser.open('http://localhost:8000')
+webbrowser.open('http://localhost:' + str(PORT))
