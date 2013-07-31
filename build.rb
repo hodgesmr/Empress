@@ -45,6 +45,7 @@ class BlogBuilder
         title = File.open("./content/posts/#{item}", &:readline)
         title = title.gsub("\n", "")
         title[0] = ''
+        title = title.strip
         slug = item[0...-3]
         publish_date = `git log --format='format:%ci' --diff-filter=A ./content/posts/"#{item}"`
         @posts.push(Post.new(title, slug, item, publish_date))
