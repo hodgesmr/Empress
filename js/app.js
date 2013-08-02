@@ -74,7 +74,6 @@ App.Router.map(function() {
 
 App.IndexRoute = Ember.Route.extend({
 	setupController: function(controller, model) {
-		$('.nav-collapse').collapse('hide');
 		document.title = App.Title;
 	}
 });
@@ -87,7 +86,6 @@ App.AboutController = Ember.ObjectController.extend({
 // About Route
 App.AboutRoute = Ember.Route.extend({
 	setupController: function(controller, model) {
-		$('.nav-collapse').collapse('hide');
 		loadContentFile("about.md", function(data) {
 			controller.set("aboutBody", data);
 		});
@@ -142,3 +140,11 @@ Ember.Handlebars.registerBoundHelper('date', function(date) {
   		return moment(date).format('MMMM Do YYYY');
   	}
 });
+
+// Close nav on any ember-generated link click
+$(function() {
+  $('a.ember-view').on('click', function() {
+    $('.nav-collapse').collapse('hide');
+  });
+});
+
