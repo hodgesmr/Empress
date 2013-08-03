@@ -22,8 +22,12 @@
           <a class="navbar-brand" href="/">{{App.Title}}</a>
           <div class="nav-collapse collapse">
             <ul class="nav navbar-nav">
-              <li>{{#linkTo 'index'}}Home{{/linkTo}}</li>
-              <li>{{#linkTo 'about'}}About{{/linkTo}}</li>
+                {{#linkTo 'index' tagName='li' href=false}}
+                    {{#linkTo 'index'}}Home{{/linkTo}}
+                {{/linkTo}}
+                {{#linkTo 'about' tagName='li' href=false}}
+                    {{#linkTo 'about'}}About{{/linkTo}}
+                {{/linkTo}}
             </ul>
           </div><!--/.nav-collapse -->
         </div>
