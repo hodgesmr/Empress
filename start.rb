@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env ruby
 
 # Copyright (c) 2013 Matt Hodges (http://matthodges.com)
 
@@ -20,23 +20,32 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-import sys
-import webbrowser
-import SimpleHTTPServer
-from SocketServer import TCPServer
-from threading import Thread
+require 'rubygems'
+require 'webrick'
 
-if sys.argv[1:]:
-    PORT = int(sys.argv[1])
-else:
-    PORT = 8000
+if ARGV[0] then
+  port = ARGV[0]
+else
+  port = 9001
+end
 
-Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
+if $0 == __FILE__ then
+  
+  # Create the server
+  mime_types = WEBrick::HTTPUtils::DefaultMimeTypes
+  mime_types.store 'js', 'application/javascript'
+  server = WEBrick::HTTPServer.new(:Port => port, :MimeTypes => mime_types)
+  server.mount "/", WEBrick::HTTPServlet::FileHandler, './'
 
-httpd = TCPServer(("", PORT), Handler)
+  # Handle interuptions
+  trap "INT" do
+    server.shutdown
+  end
 
-print "Starting HTTP server on port", PORT
-Thread(target=httpd.serve_forever).start()
+  # Start the server
+  puts "\n===================="
+  puts " * Starting HTTP server on port #{port}"
+  puts "====================\n\n"
 
-print "Launching local instance of Empress"
-webbrowser.open('http://localhost:' + str(PORT))
+  server.start
+end
