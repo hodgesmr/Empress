@@ -8,7 +8,7 @@ It is easy to launch a local instance of Empress:
 
 ```sh
 git clone https://github.com/hodgesmr/Empress.git ~/Empress
-~/Empress/launch.py
+~/Empress/start.rb
 ```
 
 If you want to host your Empress blog on GitHub, the following section will walk you through that.
@@ -53,7 +53,7 @@ git merge upstream/master
 
 Use Markdown to author your blog posts. All posts should be placed in `/content/posts/`.
 
-The Empress build process works by referencing files that have a commit in your git tree. While authoring a post (or changing any file), git commit as usual to track your changes. Once you are ready to publish your blog, add, commit, and then run `/build.rb`. You can see your changes locally with `/launch.py` before pushing.
+The Empress build process works by referencing files that have a commit in your git tree. While authoring a post (or changing any file), git commit as usual to track your changes. Once you are ready to publish your blog, add, commit, and then run `/build.rb`. You can see your changes locally by running `/start.rb` and pointing your browser to localhost, before pushing.
 
 ####Conventions
 
