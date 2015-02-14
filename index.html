@@ -22,12 +22,12 @@
           <a class="navbar-brand" href="/">{{App.Title}}</a>
           <div class="nav-collapse collapse">
             <ul class="nav navbar-nav">
-                {{#linkTo 'index' tagName='li' href=false}}
-                    {{#linkTo 'index'}}Home{{/linkTo}}
-                {{/linkTo}}
-                {{#linkTo 'about' tagName='li' href=false}}
-                    {{#linkTo 'about'}}About{{/linkTo}}
-                {{/linkTo}}
+                {{#link-to 'index' tagName='li' href=false}}
+                    {{#link-to 'index'}}Home{{/link-to}}
+                {{/link-to}}
+                {{#link-to 'about' tagName='li' href=false}}
+                    {{#link-to 'about'}}About{{/link-to}}
+                {{/link-to}}
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -44,7 +44,7 @@
             <h4>Contact</h4>
             <ul>
               {{#each App.ExternalLinks}}
-              <li><a target="_blank" {{bindAttr href="url"}}>{{title}}</a></li>
+              <li><a target="_blank" {{bind-attr href="url"}}>{{title}}</a></li>
               {{/each}}
             </ul>
          </div>
@@ -58,7 +58,7 @@
       <div class="main-content">
         <ul class="post-list">
           {{#each App.Posts}}
-          <li><span class="date">{{date publishDate}}</span>{{#linkTo 'post' this}}{{title}}{{/linkTo}}</li>
+          <li><span class="date">{{date publishDate}}</span>{{#link-to 'post' this}}{{title}}{{/link-to}}</li>
           {{/each}}
         </ul>
       </div>
